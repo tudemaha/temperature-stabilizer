@@ -42,7 +42,9 @@ void setup() {
   }
   
   blynkBegin();
-    
+   
+  ESP.reset();
+  
   dht.begin();
   led1.on();
   timer.setInterval(1000L, sendSensor);
