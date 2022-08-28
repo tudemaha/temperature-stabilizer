@@ -22,9 +22,9 @@ BlynkTimer timer;
 WidgetLED led1(V1);
 bool ledStatus = false;
 
-float setTemperature = 50.0f;
+double setTemperature = 50.0;
 BLYNK_WRITE(V7) {
-  setTemperature = param.asInt();
+  setTemperature = param.asDouble();
 }
 
 void setup() {
@@ -32,7 +32,7 @@ void setup() {
   
   pinMode(relay, OUTPUT);
   
-  digitalWrite(relay, LOW);
+  digitalWrite(relay, HIGH);
 
   if (wifiManager()) {
     Serial.println("WiFi Connected");
@@ -42,8 +42,6 @@ void setup() {
   }
   
   blynkBegin();
-   
-  ESP.reset();
   
   dht.begin();
   led1.on();
@@ -89,10 +87,10 @@ void sendSensor() {
   
   if(t >= setTemperature) {
     led1.setColor(BLYNK_RED);
-    digitalWrite(relay, HIGH);
+    digitalWrite(relay, LOW);
   } else {
     led1.setColor(BLYNK_GREEN);
-    digitalWrite(relay, LOW);
+    digitalWrite(relay, HIGH);
   }
 }
 
