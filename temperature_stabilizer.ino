@@ -2,13 +2,13 @@
 #define BLYNK_DEVICE_NAME "Temperature Stabilizer"
 #define BLYNK_AUTH_TOKEN "V7MSkFU9IoT6oztNMxYdkQayQ2Le5KPO"
 
-#define DHTPIN 0
+#define DHTPIN 14
 #define DHTTYPE DHT11
 
 #define BLYNK_GREEN "#23C48E"
 #define BLYNK_RED   "#D3435C"
 
-#define relay 2
+#define relay 12
 
 #include <ESP8266WiFi.h>
 #include <BlynkSimpleEsp8266.h>
@@ -59,7 +59,7 @@ bool wifiManager() {
   WiFiManager manager;
 
   // enable for testing necessary
-  //  manager.resetSettings();
+  manager.resetSettings();
 
   bool res;
   res = manager.autoConnect("Temperature Stabilizer", "temp12345");
